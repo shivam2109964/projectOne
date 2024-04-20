@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttre_one/MyHomePage.dart';
+import 'package:fluttre_one/Widget%20Practice/Scaffold/scaffold.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context){
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      home: ScaffoldOne(),
     );
   }
 }
