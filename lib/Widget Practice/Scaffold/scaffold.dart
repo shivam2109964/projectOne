@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttre_one/Widget%20Practice/bloc%201/increment_bloc.dart';
+import 'package:fluttre_one/Blocs/bloc%201/increment_bloc.dart';
 
 class ScaffoldOne extends StatelessWidget {
   const ScaffoldOne({Key? key}) : super(key: key);
