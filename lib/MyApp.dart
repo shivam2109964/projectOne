@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttre_one/Widget%20Practice/Text/text.dart';
+import 'package:fluttre_one/Widget%20Practice/Buttons/Buttonss.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context){
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Textt(),
+      home: Buttonss(),
     );
   }
 }
