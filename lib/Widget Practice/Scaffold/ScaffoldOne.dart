@@ -40,13 +40,23 @@ class ScaffoldOne extends StatelessWidget {
           },
         ),
         bottomNavigationBar: BottomAppBar(
-          shape: CircularNotchedRectangle(),
-          child: BottomNavigationBar(items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add),
-              label: "Add",
-            ),
-          ]),
+          shape: const CircularNotchedRectangle(),
+          child: BottomNavigationBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0.0,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              iconSize: 20,
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.add_alarm_rounded),
+                  label: "Add1",
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.zoom_out_map_rounded),
+                  label: "lable",
+                ),
+              ]),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
