@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttre_one/Blocs/bloc%201/increment_bloc.dart';
+
+import '../../Blocs/bloc/scaffold_one_bloc.dart';
 
 class ScaffoldOne extends StatelessWidget {
   const ScaffoldOne({Key? key}) : super(key: key);
@@ -8,46 +9,44 @@ class ScaffoldOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => IncrementBloc(),
+      create: (context) => ScaffoldOneBloc(),
       child: Scaffold(
         backgroundColor: Colors.black,
-        appBar: AppBar(
-          backgroundColor: Colors.black38,
-          title: const Text(
-            "Scaffold",
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-        ),
         body: Center(
-          child: BlocBuilder<IncrementBloc, IncrementState>(
+          child: BlocBuilder<ScaffoldOneBloc, ScaffoldOneState>(
             builder: (context, state) {
-              if (state is IncrementStateCount) {
+              if (state is IncrementState)
                 return Text(
-                  "You have pressed the button ${state.count.toString()} times",
-                  style: const TextStyle(
-                    color: Colors.white,
-                  ),
+                  "${state.count.toString()}",
+                  style: TextStyle(color: Colors.white),
                 );
+              else if (state is DecermentState) {
+                return Text("${state.count.toString()}");
               }
               return Container();
             },
           ),
         ),
-        floatingActionButton: BlocBuilder<IncrementBloc, IncrementState>(
+        floatingActionButton: BlocBuilder<ScaffoldOneBloc, ScaffoldOneState>(
           builder: (context, state) {
             return FloatingActionButton(
-              shape: const CircleBorder(),
+              shape: CircleBorder(),
               onPressed: () {
-                BlocProvider.of<IncrementBloc>(context).add(IncrementCount());
+                BlocProvider.of<ScaffoldOneBloc>(context)
+                    .add(IncrementFireEvent());
               },
               child: const Icon(Icons.add),
             );
           },
         ),
-        bottomNavigationBar: const BottomAppBar(
+        bottomNavigationBar: BottomAppBar(
           shape: CircularNotchedRectangle(),
+          child: BottomNavigationBar(items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add),
+              label: "Add",
+            ),
+          ]),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
