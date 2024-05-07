@@ -36,10 +36,11 @@ class _BackDropFilterHomeState extends State<BackDropFilterHome> {
                           content: const Text("Did you like it?"),
                           actions: [
                             TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text("Ok"))
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Ok"),
+                            ),
                           ],
                         ),
                       );
