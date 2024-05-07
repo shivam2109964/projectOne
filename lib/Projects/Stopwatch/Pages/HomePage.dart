@@ -1,9 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttre_one/Projects/Stopwatch/Pages/BlocHomeStopPage.dart';
-import 'package:fluttre_one/Projects/Stopwatch/bloc/stopwatch_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeStopwatch extends StatefulWidget {
@@ -97,20 +94,17 @@ class _HomeStopwatchState extends State<HomeStopwatch> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => BlocProvider(
-                create: (context) => StopwatchBloc(),
-                child: BlocStopHomePage(),
-              ),
-            ),
-          );
-        },
-        child: const Icon(Icons.arrow_forward),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.push(
+      //       context,
+      //       MaterialPageRoute(
+      //         builder: (context) => BlocStopHomePage(),
+      //       ),
+      //     );
+      //   },
+      //   child: const Icon(Icons.arrow_forward),
+      // ),
     );
   }
 }
