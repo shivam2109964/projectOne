@@ -1,29 +1,19 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class HomeStopwatch extends StatefulWidget {
-  const HomeStopwatch({super.key});
+class StopWatchHome extends StatefulWidget {
+  const StopWatchHome({super.key});
 
   @override
-  State<HomeStopwatch> createState() => _HomeStopwatchState();
+  State<StopWatchHome> createState() => _StopWatchHomeState();
 }
 
-class _HomeStopwatchState extends State<HomeStopwatch> {
+class _StopWatchHomeState extends State<StopWatchHome> {
   late Stopwatch stopwatch;
-  late Timer t;
+  late Timer timer;
 
-  @override
-  void initState() {
-    super.initState();
-    stopwatch = Stopwatch();
-    t = Timer.periodic(Duration(milliseconds: 30), (timer) {
-      setState(() {});
-    });
-  }
-
-  void handleStartStop() {
+  void handleStopandStart() {
     if (stopwatch.isRunning) {
       stopwatch.stop();
     } else {
@@ -31,25 +21,27 @@ class _HomeStopwatchState extends State<HomeStopwatch> {
     }
   }
 
-  String returnFormattedText() {
+  String returnFormettedString() {
     var milli = stopwatch.elapsed.inMilliseconds;
 
-    String millisecond = (milli % 1000).toString().padLeft(3, "0");
-    String second = ((milli ~/ 1000) % 60).toString().padLeft(2, "0");
+    String milliisecond = (milli % 1000).toString().padLeft(3, '0');
+    String second = ((milli ~/ 1000) % 60).toString().padLeft(2, '0');
     String minute = ((milli ~/ 1000) ~/ 60).toString().padLeft(2, "0");
 
-    return '$minute:$second:$millisecond';
+    return '$minute:$second:$milliisecond';
+  }
+
+  void initState() {
+    super.initState();
+    stopwatch = Stopwatch();
+    timer = Timer.periodic(const Duration(milliseconds: 20), (timer) {
+      setState(() {});
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Normal StopWatch",
-          style: GoogleFonts.aclonica(),
-        ),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -58,53 +50,35 @@ class _HomeStopwatchState extends State<HomeStopwatch> {
               height: 250,
               width: 250,
               child: MaterialButton(
+                onPressed: () {
+                  handleStopandStart();
+                },
                 shape: const CircleBorder(),
                 padding: const EdgeInsets.all(0),
-                onPressed: () {
-                  handleStartStop();
-                },
                 child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: Colors.blue,
-                      width: 4,
+                      width: 5,
                     ),
                   ),
                   child: Text(
-                    returnFormattedText(),
-                    style: TextStyle(fontSize: 40),
+                    returnFormettedString(),
+                    style: TextStyle(fontSize: 30),
                   ),
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.all(10),
-            ),
             ElevatedButton(
-              onPressed: () {
-                stopwatch.reset();
-              },
-              child: const Text(
-                "Reset",
-                style: TextStyle(fontSize: 15),
-              ),
-            ),
+                onPressed: () {
+                  stopwatch.reset();
+                },
+                child: const Text("Reset"))
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     Navigator.push(
-      //       context,
-      //       MaterialPageRoute(
-      //         builder: (context) => BlocStopHomePage(),
-      //       ),
-      //     );
-      //   },
-      //   child: const Icon(Icons.arrow_forward),
-      // ),
     );
   }
 }
