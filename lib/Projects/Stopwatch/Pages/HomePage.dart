@@ -1,22 +1,31 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttre_one/Projects/Stopwatch/Pages/BlocHomeStopPage.dart';
+import 'package:fluttre_one/Projects/Stopwatch/bloc/stopwatch_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-//The reason of creating a stateful widget
-//we often need to change the data for that purpose
-class HomeStopWatch extends StatefulWidget {
-  const HomeStopWatch({super.key});
+class HomeStopwatch extends StatefulWidget {
+  const HomeStopwatch({super.key});
 
   @override
-  State<HomeStopWatch> createState() => _HomeStopWatchState();
+  State<HomeStopwatch> createState() => _HomeStopwatchState();
 }
 
-class _HomeStopWatchState extends State<HomeStopWatch> {
-  //Rule 1 Always Define a Function OutSide of Build
+class _HomeStopwatchState extends State<HomeStopwatch> {
   late Stopwatch stopwatch;
   late Timer t;
+
+  @override
+  void initState() {
+    super.initState();
+    stopwatch = Stopwatch();
+    t = Timer.periodic(Duration(milliseconds: 30), (timer) {
+      setState(() {});
+    });
+  }
+
   void handleStartStop() {
     if (stopwatch.isRunning) {
       stopwatch.stop();
@@ -29,34 +38,29 @@ class _HomeStopWatchState extends State<HomeStopWatch> {
     var milli = stopwatch.elapsed.inMilliseconds;
 
     String millisecond = (milli % 1000).toString().padLeft(3, "0");
-    String seconds = ((milli ~/ 1000) % 60).toString().padLeft(2, "0");
+    String second = ((milli ~/ 1000) % 60).toString().padLeft(2, "0");
     String minute = ((milli ~/ 1000) ~/ 60).toString().padLeft(2, "0");
 
-    return "$minute:$seconds:$millisecond";
-  }
-
-  //Create a init state
-  @override
-  void initState() {
-    super.initState();
-    stopwatch = Stopwatch();
-    t = Timer.periodic(const Duration(milliseconds: 30), (timer) {
-      setState(() {});
-    });
+    return '$minute:$second:$millisecond';
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Normal StopWatch",
+          style: GoogleFonts.aclonica(),
+        ),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             SizedBox(
               height: 250,
               width: 250,
               child: MaterialButton(
-                clipBehavior: Clip.antiAlias,
                 shape: const CircleBorder(),
                 padding: const EdgeInsets.all(0),
                 onPressed: () {
@@ -73,25 +77,39 @@ class _HomeStopWatchState extends State<HomeStopWatch> {
                   ),
                   child: Text(
                     returnFormattedText(),
-                    style: const TextStyle(fontSize: 40),
+                    style: TextStyle(fontSize: 40),
                   ),
                 ),
               ),
             ),
-            MaterialButton(
+            const Padding(
+              padding: EdgeInsets.all(10),
+            ),
+            ElevatedButton(
               onPressed: () {
                 stopwatch.reset();
               },
               child: const Text(
                 "Reset",
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 15),
               ),
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BlocProvider(
+                create: (context) => StopwatchBloc(),
+                child: BlocStopHomePage(),
+              ),
+            ),
+          );
+        },
+        child: const Icon(Icons.arrow_forward),
       ),
     );
   }
