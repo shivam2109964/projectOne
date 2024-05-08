@@ -17,6 +17,7 @@ class _ColumnsHomeState extends State<ColumnsHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.amber,
       body: Column(
         children: <Widget>[
           Expanded(
@@ -42,9 +43,64 @@ class _ColumnsHomeState extends State<ColumnsHome> {
                       "This is the Column Widget Item 2",
                       style: TextStyle(fontSize: 18, color: Colors.black),
                     ),
-                    Image.asset('Image/logo.png')
+                    Image.asset('lib/Images/OIG1.jpeg'),
+                    const Text(
+                      "This is the Column Widget - Item 4",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                      ),
+                    ),
                   ],
                 ),
+              ),
+            ),
+          ),
+          Container(
+            child: Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: Row(
+                children: <Widget>[
+                  Radio(
+                    value: ALIGN.spaceEvenly,
+                    groupValue: _character,
+                    onChanged: (ALIGN? value) {
+                      setState(
+                        () {
+                          _character = value;
+                          _mainAxisAlignment = MainAxisAlignment.spaceEvenly;
+                        },
+                      );
+                    },
+                  ),
+                  const Text('Evenly'),
+                  Radio(
+                    value: ALIGN.start,
+                    groupValue: _character,
+                    onChanged: (ALIGN? value) {
+                      setState(
+                        () {
+                          _character = value;
+                          _mainAxisAlignment = MainAxisAlignment.start;
+                        },
+                      );
+                    },
+                  ),
+                  const Text("Start"),
+                  Radio(
+                    value: ALIGN.center,
+                    groupValue: _character,
+                    onChanged: (ALIGN? value) {
+                      setState(
+                        () {
+                          _character = value;
+                          _mainAxisAlignment = MainAxisAlignment.center;
+                        },
+                      );
+                    },
+                  ),
+                  const Text("Center"),
+                ],
               ),
             ),
           ),
