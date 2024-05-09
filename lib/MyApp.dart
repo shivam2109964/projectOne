@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttre_one/Widget%20Practice/Sliver/Sliver%20List/SliverList.dart';
+import 'package:fluttre_one/Widget%20Practice/Sliver/Slive%20Grid/SliverGrid.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "ALl Projects", 
-      home: SliverListHome()
+      home: SliverGridHome()
     );
   }
 }
