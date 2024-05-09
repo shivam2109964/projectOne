@@ -26,3 +26,4 @@ flutter:
   uses-material-design: true
   assets:
     - lib/Images/OIG1.jpeg
+    - lib/Images/fsfc.png
