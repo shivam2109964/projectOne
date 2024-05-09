@@ -8,6 +8,9 @@ class SliverGridHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("SliverGrid"),
+      ),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverGrid(
