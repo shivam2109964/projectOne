@@ -12,13 +12,13 @@ class HeroHome extends StatefulWidget {
 class _HeroHomeState extends State<HeroHome> {
   Widget _smallImage(Color color) {
     return Container(
-      height: 300,
+      height: 50,
       width: 50,
       color: color,
     );
   }
 
-  Widget bigImage(Color color) {
+  Widget _BigImage(Color color) {
     return Container(
       height: 300,
       width: 300,
@@ -26,17 +26,21 @@ class _HeroHomeState extends State<HeroHome> {
     );
   }
 
-  void _fullImagePage(BuildContext context, Color color, String tag) {
+  void _fullViewPage(BuildContext context, Color color, String index) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (BuildContext context) => Scaffold(
           appBar: AppBar(
-            title: const Text("Hero Page"),
+            title: const Text("The Hero Widget"),
           ),
           body: Center(
-            child: Hero(
-              tag: tag,
-              child: bigImage(color),
+            child: Column(
+              children: <Widget>[
+                Hero(
+                  tag: index.toString(),
+                  child: _BigImage(color),
+                ),
+              ],
             ),
           ),
         ),
@@ -52,9 +56,9 @@ class _HeroHomeState extends State<HeroHome> {
       ),
       body: ListView(
         children: List.generate(
-          15,
+          10,
           (index) {
-            Color color = Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0)
+            Color color = Color((Random().nextDouble() * 0xFFFFFF).toInt())
                 .withOpacity(1);
             Key n1 = GlobalKey();
             return Padding(
@@ -66,8 +70,9 @@ class _HeroHomeState extends State<HeroHome> {
                     tag: index.toString(),
                     child: _smallImage(color),
                   ),
-                  onTap: () => _fullImagePage(context, color, index.toString()),
+                  onTap: () => _fullViewPage(context, color, index.toString()),
                 ),
+                title: const Text("Tap on the box"),
               ),
             );
           },
