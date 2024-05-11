@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttre_one/Widget%20Practice/Chip/chip.dart';
+import 'package:fluttre_one/Widget%20Practice/Spacer/spacer.dart';
 
 
 class MyApp extends StatelessWidget {
@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "ALl Projects",
-      home: ChipDart(),
+      home: SpacerWidget(),
     );
   }
 }
