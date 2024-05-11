@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:fluttre_one/Widget%20Practice/Drawer/drawer.dart';
+import 'package:fluttre_one/Widget%20Practice/BackdropFilter/backdropFilter.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "ALl Projects",
-      home: DrawerHome(),
+      home: BackDropFilterDart(),
     );
   }
 }
