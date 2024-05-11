@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttre_one/Widget%20Practice/Spacer/spacer.dart';
+import 'package:fluttre_one/Widget%20Practice/Animated%20Switcher/animatedSwitcher.dart';
 
 
 class MyApp extends StatelessWidget {
@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "ALl Projects",
-      home: SpacerWidget(),
+      home: AnimatedSwitcherDart(),
     );
   }
 }
